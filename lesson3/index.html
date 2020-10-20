@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 3</title>
+</head>
+<body>
+    <div id="ajax-block"></div>
+    <button id="ajax-get">Async get data</button>
+    <script>
+        // let userJson = '{"name": "Ann", "age": 25, "isAdmin": true}';
+        // // console.log(userJson);
+        //
+        // const user = JSON.parse(userJson);
+        // // console.log(user);
+        //
+        // user.dateCreated = '2020-05-01';
+        // user.address = {
+        //     city: 'Moscow',
+        //     postalCode: 109400,
+        // };
+        //
+        // console.log(user);
+        //
+        // const userJson2 = JSON.stringify(user, ['name', 'age', 'dateCreated', 'isAdmin', 'address', 'city', 'postalCode'], 4);
+        // console.log(userJson2);
+        //
+        // const user2 = JSON.parse(userJson2, (key, value) => {
+        //     if (key === 'dateCreated') {
+        //         value = new Date(value);
+        //     }
+        //
+        //     return value;
+        // });
+        //
+        // console.log(user2.dateCreated.getFullYear());
+
+        // const num = () => {
+        //     let b;
+        //
+        //     setTimeout(() => {
+        //         b = 20;
+        //     }, 500);
+        //
+        //     return b;
+        // };
+
+        // CallBack
+        // const num = (a, cb) => {
+        //     let b;
+        //     setTimeout(() => {
+        //         b = a + 20;
+        //         cb(b);
+        //     }, 2000);
+        // };
+
+        // num(10, (data) => {
+        //     console.log(data);
+        // });
+        // function posmotrimChtoPrishlo(votTutDannye) {
+        //     console.log(votTutDannye);
+        // }
+        // const foo = (data) => {
+        //     console.log(data);
+        // };
+        // num(10, posmotrimChtoPrishlo);
+        // num(10, function (votTutDannye) {
+        //     console.log(votTutDannye);
+        // });
+        // num(10, foo);
+
+        // ES6 Promise
+        // let num = (a) => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             if (a) {
+        //                 resolve(a + 10, reject);
+        //             } else {
+        //                 reject('Error!');
+        //             }
+        //         }, 2000);
+        //     });
+        // }
+        //
+        // num(10)
+        //     .then((data, reject) => {
+        //         console.log(data);
+        //         return new Promise((resolve, reject = reject) => {
+        //             setTimeout(() => {
+        //                 if (data === 200) {
+        //                     resolve(data + 100);
+        //                 } else {
+        //                     reject('Error!');
+        //                 }
+        //             });
+        //         });
+        //     })
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+
+        window.addEventListener('load', () => {
+            document.getElementById('ajax-get').addEventListener('click', () => {
+                // ES5
+                // var xhr = new XMLHttpRequest();
+                //
+                // xhr.open('GET', 'tel.json', true); // true - асинхронный запрос
+                //
+                // xhr.onreadystatechange = () => {
+                //     // xhr.readyState
+                //     // 0 - запрос не инициализирован
+                //     // 1 - загрузка данных
+                //     // 2 - запрос принят сервером
+                //     // 3 - идет обмен данными
+                //     // 4 - запрос выполнен
+                //
+                //     if (xhr.readyState !== 4) return;
+                //
+                //     if (xhr.status !== 200) {
+                //         console.log(`Error ${xhr.status} ${xhr.statusText}`);
+                //     } else {
+                //         console.log('Ok!', xhr.responseText);
+                //         const data = JSON.parse(xhr.responseText);
+                //         const block = document.getElementById('ajax-block');
+                //
+                //         block.insertAdjacentHTML('beforeend', `<p>${data.name} - <strong>${data.tel}</strong></p>`);
+                //     }
+                // }
+                //
+                // xhr.send();
+
+                // ES6
+                fetch('tel.json')
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                        const block = document.getElementById('ajax-block');
+
+                        block.insertAdjacentHTML('beforeend', `<p>${data.name} - <strong>${data.tel}</strong></p>`);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
