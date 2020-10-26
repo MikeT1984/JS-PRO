@@ -52,6 +52,25 @@ p {
     overflow: hidden;
     margin: 20px 0;
 }
+.product-item h3 {
+    font-size: 1.8em;
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.product-item p {
+    font-size: 1.3em;
+    text-align: right;
+}
+
+.product-item button {
+    float: right;
+    border: 1px solid #b99;
+    background-color: #db9;
+    border-radius: 2px;
+    padding: 5px;
+}
+
 img {
     max-width: 100%;
     height: auto
@@ -74,4 +93,33 @@ img {
     background-color: transparent;
     border-color: #2f2a2d;
     color: #2f2a2d;
+}
+.basket {
+    position: absolute;
+    width: 500px;
+    right: 10px;
+    top: 35px;
+    background-color: grey;
+    padding: 10px;
+    border: 1px black solid;
+}
+
+.hidden-element {
+    display: none;
+}
+
+.basket-table {
+    border: 1px solid black;
+}
+
+.basket-table td {
+    padding: 5px;
+    border-top: black 1px solid;
+    width: 100px;
+    text-align: right;
+}
+
+.basket-table td:first-child {
+    width: 200px;
+    text-align: left;
 }
