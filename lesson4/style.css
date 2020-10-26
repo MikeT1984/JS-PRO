@@ -1,0 +1,29 @@
+.text {
+    white-space: pre-wrap;
+    padding: 5px;
+    margin-bottom: 15px;
+    font-size: large;
+    border: 1px black solid;
+}
+
+.main {
+    width: 400px;
+}
+
+.main > div {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+input {
+    float: right;
+    width: 80%;
+}
+
+.error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+}
