@@ -3,7 +3,13 @@ const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-a
 const app = new Vue({
     el: '#app',
     data: {
+        userSearch: '',
+        isVisibleCart: false,
         catalogUrl: '/catalogData.json',
+        cartUrl: '/getBasket.json',
+        cartItems: [],
+        filtered: [],
+        imgCart: 'https://placehold.it/50x70',
         products: [],
         imgCatalog: 'https://placehold.it/200x150',
     },
@@ -15,38 +21,57 @@ const app = new Vue({
                     console.log(error);
                 })
         },
-        addProduct(product) {
-            console.log(product.id_product)
+        addProduct(item){
+            this.getJson(`${API}/addToBasket.json`)
+                .then(data => {
+                    if(data.result === 1){
+                        let find = this.cartItems.find(el => el.id_product === item.id_product);
+                        if(find){
+                            find .quantity++;
+                        } else {
+                            const product = Object.assign({quantity: 1}, item);
+                            this.cartItems.push(product)
+                        }
+                    }
+                })
         },
+        remove(item){
+            this.getJson(`${API}/addToBasket.json`)
+                .then(data => {
+                    if (data.result === 1) {
+                        if(item.quantity>1){
+                            item.quantity--;
+                        } else {
+                            this.cartItems.splice(this.cartItems.indexOf(item), 1);
+                        }
+                    }
+                })
+        },
+        filter(){
+            let regexp = new RegExp(this.userSearch, 'i');
+            this.filtered = this.products.filter(el => regexp.test(el.product_name));
+        }
     },
-    beforeCreate() {
-        console.log('beforeCreate');
-    },
-    created() {
-        console.log('created');
-        this.getJson(`${API}${this.catalogUrl}`)
+    mounted(){
+        this.getJson(`${API + this.cartUrl}`) //из нашего сервиса в сети
             .then(data => {
-                for (el of data) {
-                    this.products.push(el);
+                for(let item of data.contents){
+                    this.$data.cartItems.push(item);
                 }
             });
-    },
-    beforeMount() {
-        console.log('beforeMount');
-    },
-    mounted() {
-        console.log('mounted');
-    },
-    beforeUpdate() {
-        console.log('beforeUpdate');
-    },
-    updated() {
-        console.log('updated');
-    },
-    beforeDestroy() {
-        console.log('beforeDestroy');
-    },
-    destroyed() {
-        console.log('destroyed');
-    },
+        this.getJson(`${API + this.catalogUrl}`)
+            .then(data => {
+                for (let item of data){
+                    this.$data.products.push(item);
+                    this.$data.filtered.push(item);
+                }
+            });
+        this.getJson(`getProducts.json`)
+            .then(data => {
+                for(let item of data){
+                    this.$data.products.push(item);
+                    this.$data.filtered.push(item);
+                }
+            })
+    }
 });
