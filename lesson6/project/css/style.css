@@ -1,14 +1,14 @@
-body{
-    font-family: 'SF Pro Display', sans-serif;
+body {
+    font-family: 'Roboto;', sans-serif;
 }
-header{
+header {
     display: flex;
-    background-color: #2f2a2d;
+    background-color:#2f2a2d;
     justify-content: space-between;
     color: #fafafa;
     padding: 30px 80px;
 }
-button:focus{
+button {
     outline: none;
 }
 .logo{
@@ -16,6 +16,7 @@ button:focus{
     text-transform: uppercase;
     font-weight: bold;
 }
+
 .btn-cart{
     background-color: #fafafa;
     padding: 10px 20px;
@@ -25,20 +26,16 @@ button:focus{
     transition: all ease-in-out .4s;
     cursor: pointer;
 }
+
 .btn-cart:hover{
     background-color: transparent;
     border-color: #fafafa;
     color: #fafafa;
 }
-.btn-cart, .logo{
+.btn-cart, .logo {
     align-self: center;
 }
-/*.products {*/
-/*display: flex;*/
-/*justify-content: space-between;*/
-/*flex-wrap: wrap;*/
-/*padding: 40px 80px;*/
-/*}*/
+
 .products{
     column-gap: 30px;
     display: grid;
@@ -50,7 +47,7 @@ button:focus{
 p {
     margin: 0 0 5px 0;
 }
-.product-item{
+.product-item {
     display: flex;
     flex-direction: column;
     width: 200px;
@@ -60,7 +57,7 @@ p {
 }
 img {
     max-width: 100%;
-    height: auto
+    height: auto;
 }
 .desc {
     border: 1px solid #c0c0c040;
@@ -82,20 +79,6 @@ img {
     width: 300px;
 }
 
-.invisible{
-    display: none;
-}
-.cart-block:before{
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: -10px;
-    right: 35px;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid white;
-}
 
 .buy-btn, .del-btn{
     margin-top: 5px;
@@ -112,6 +95,8 @@ img {
     color: #2f2a2d;
     border: 1px solid #2f2a2d;
 }
+
+
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -143,14 +128,14 @@ img {
 .right-block{
     text-align: right;
 }
-.btn-search {
+.search-btn {
     background-color: transparent;
-    border: none;
+    border:           none;
     color: #fafafa;
-    font-size: 1.2em;
-    position: absolute;
-    bottom: 5px;
-    right: 0;
+    font-size:        1.2em;
+    position:         absolute;
+    bottom:           5px;
+    right:            0;
 }
 .search-form{
     position: relative;
