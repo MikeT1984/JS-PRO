@@ -1,15 +1,14 @@
 Vue.component('products', {
     data(){
         return {
-            catalogUrl: '',
             products: [],
             filtered: [],
             imgCatalog: 'https://placehold.it/200x150',
         }
     },
     methods: {
-        filter(value){
-            let regexp = new RegExp(value, 'i');
+        filter(userSearch){
+            let regexp = new RegExp(userSearch, 'i');
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
@@ -24,10 +23,11 @@ Vue.component('products', {
     },
     template: `
         <div class="products">
-            <product ref="refref" v-for="item of filtered" :key="item.id_product" :img="imgCatalog" :product="item"></product>
+            <product v-for="item of filtered" :key="item.id_product" :img="imgCatalog" :product="item"></product>
         </div>
     `
 });
+
 Vue.component('product', {
     props: ['product', 'img'],
     data() {
@@ -37,7 +37,7 @@ Vue.component('product', {
            * то мы легко можем получить доступ к ним используя свойство $root.
            * $parent можно использовать для доступа к родительскому экземпляру из дочернего.
            */
-          cartAPI: this.$root.$refs.cart,
+          cartAPI: this.$root.$refs.cart, // добираемся до компонента корзины, чтобы далее использовать метод добавления
       };
     },
 
